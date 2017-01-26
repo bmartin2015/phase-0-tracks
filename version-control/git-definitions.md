@@ -17,3 +17,5 @@ A commit is a save point in the repository/project/branch. It is used when you w
 * What is a merge conflict?
 
 A merge conflict occurs when attempting to merge, but some files/lines/code have conflicting changes.
+
+Hey, I'm updating this for a second time.
