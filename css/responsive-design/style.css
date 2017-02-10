@@ -1,7 +1,7 @@
 * { outline: 1px solid red; }
 
 body {
-  width: 960px;
+  max-width: 960px;
 }
 blockquote {
   border-left: 5px solid blue;
@@ -20,13 +20,13 @@ cite {
 }
 
 #external-links {
-  width: 200px;
+  width: 20%;
   display: inline-block;
   vertical-align: top;
 }
 
 main {
-  width: 756px;
+  width: 80%;
   display: inline-block;
 }
 
