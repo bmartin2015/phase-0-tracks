@@ -1,5 +1,7 @@
 body {
   max-width: 960px;
+  /* how to set the page center */
+  margin: auto;
 }
 
 blockquote {
