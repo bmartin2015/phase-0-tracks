@@ -1,0 +1,30 @@
+.octopus_wrapper {
+	/* setup a wrapper to center the octopus */
+	position: relative;
+	width: 90%;
+	margin: auto;
+}
+
+.octopus {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	/* to be centered it needs to have a margin that is half the image size */
+	margin-left: -105px;
+	z-index: -1;
+}
+
+.hat {
+	position: relative;
+	width: 275px;
+	height: 167px;
+	top: 30px;
+	margin: auto;
+}
+
+.glasses {
+	position: relative;
+	width: 135px;
+	height: 58px;
+	margin: 30px auto;
+}
