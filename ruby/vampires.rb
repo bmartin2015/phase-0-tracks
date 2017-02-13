@@ -74,3 +74,4 @@ until emp_count == 0
 	emp_count = emp_count - 1
 
 end
+puts "Actually, never mind! What does these questions have to do with anything? Let's all be friends."
