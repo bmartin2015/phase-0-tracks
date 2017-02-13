@@ -40,7 +40,6 @@ until emp_count == 0
 		ins = false
 	end
 
-
 	if age_correct && garlic && ins
 		vampire = "Probably not a vampire."
 	end
@@ -48,11 +47,11 @@ until emp_count == 0
 	if !age_correct && (!garlic || !ins)
 		vampire = "Probably a vampire."
 	end
-	
+
 	if !age_correct && !garlic && !ins
 		vampire = "Almost certainly a vampire"
 	end
-	
+
 	if name == "Drake Cula" || name == "Tu Fang"
 		vampire = "Definitely a vampire."
 	end
@@ -61,6 +60,17 @@ until emp_count == 0
 		vampire = "Results inconclusive."
 	end
 
+	allergy = String.new
+	puts "Please input allergies, one at time. Type done when finished."
+	until allergy == "done"
+		allergy = gets.chomp
+		if allergy == "sunshine"
+			vampire = "Probably a vampire."
+			break
+		end
+	end
+
 	puts vampire
 	emp_count = emp_count - 1
+
 end
