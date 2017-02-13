@@ -1,59 +1,66 @@
-puts "What is your name?"
-name = gets.chomp 
+puts "How many employees will be processed?"
+emp_count = gets.chomp.to_i
 
-puts "How old are you?"
-age = gets.chomp
+until emp_count == 0
 
-puts "What year where your born?"
-birth_year = gets.chomp
+	puts "What is your name?"
+	name = gets.chomp 
 
-puts "Our company cafeteria serves garlic bread. Should we order some for you?"
-garlic_bread = gets.chomp
+	puts "How old are you?"
+	age = gets.chomp
 
-puts "Would you like to enroll in the company’s health insurance?"
-insurance = gets.chomp
+	puts "What year where your born?"
+	birth_year = gets.chomp
 
-age_calc = 2017 - birth_year.to_i
+	puts "Our company cafeteria serves garlic bread. Should we order some for you?"
+	garlic_bread = gets.chomp
 
-if age_calc != age.to_i
-	age_correct = false
-else
-	age_correct = true
-end
+	puts "Would you like to enroll in the company’s health insurance?"
+	insurance = gets.chomp
 
-vampire = String.new
+	age_calc = 2017 - birth_year.to_i
 
-if garlic_bread == "yes" || garlic_bread == "Yes"
-	garlic = true
-else
-	garlic = false
-end
+	if age_calc != age.to_i
+		age_correct = false
+	else
+		age_correct = true
+	end
 
-if insurance == "yes" || insurance == "Yes"
-	ins = true
-else
-	ins = false
-end
+	vampire = String.new
+
+	if garlic_bread == "yes" || garlic_bread == "Yes"
+		garlic = true
+	else
+		garlic = false
+	end
+
+	if insurance == "yes" || insurance == "Yes"
+		ins = true
+	else
+		ins = false
+	end
 
 
-if age_correct && garlic && ins
-	vampire = "Probably not a vampire."
-end
+	if age_correct && garlic && ins
+		vampire = "Probably not a vampire."
+	end
 
-if !age_correct && (!garlic || !ins)
-	vampire = "Probably a vampire."
-end
+	if !age_correct && (!garlic || !ins)
+		vampire = "Probably a vampire."
+	end
 	
-if !age_correct && !garlic && !ins
-	vampire = "Almost certainly a vampire"
-end
+	if !age_correct && !garlic && !ins
+		vampire = "Almost certainly a vampire"
+	end
 	
-if name == "Drake Cula" || name == "Tu Fang"
-	vampire = "Definitely a vampire."
-end
+	if name == "Drake Cula" || name == "Tu Fang"
+		vampire = "Definitely a vampire."
+	end
 
-if vampire == ""
-	vampire = "Results inconclusive."
-end
+	if vampire == ""
+		vampire = "Results inconclusive."
+	end
 
-puts vampire
+	puts vampire
+	emp_count = emp_count - 1
+end
