@@ -13,8 +13,6 @@ garlic_bread = gets.chomp
 puts "Would you like to enroll in the company’s health insurance?"
 insurance = gets.chomp
 
-vampire = false
-
 age_calc = 2017 - birth_year.to_i
 
 if age_calc != age.to_i
@@ -22,6 +20,8 @@ if age_calc != age.to_i
 else
 	age_correct = true
 end
+
+vampire = String.new
 
 if garlic_bread == "yes" || garlic_bread == "Yes"
 	garlic = true
@@ -35,14 +35,25 @@ else
 	ins = false
 end
 
-if name == "Drake Cula" || name == "Tu Fang"
-	puts "Definitely a vampire."
-elsif !age_correct && !garlic && ins
-	puts "Almost certainly a vampire"
-elsif !age_correct && (!garlic || !ins)
-	puts "Probably a vampire."
-elsif age_correct && garlic && ins
-	puts "Probably not a vampire."
-else
-	puts "Results inconclusive."
+
+if age_correct && garlic && ins
+	vampire = "Probably not a vampire."
 end
+
+if !age_correct && (!garlic || !ins)
+	vampire = "Probably a vampire."
+end
+	
+if !age_correct && !garlic && !ins
+	vampire = "Almost certainly a vampire"
+end
+	
+if name == "Drake Cula" || name == "Tu Fang"
+	vampire = "Definitely a vampire."
+end
+
+if vampire == ""
+	vampire = "Results inconclusive."
+end
+
+puts vampire
