@@ -1,0 +1,30 @@
+Release 0: Equip Your New Robot
+- Identify current floor
+- If new floor is greater than current floor push UP else push DOWN
+- Wait until doors open
+- Enter elevator
+- Search for floor
+	- If going up, start at current floor and search floors greater
+	- If going down, start at current floor and search lower
+	- When new floor located push button
+- Wait until door opens
+	- If current floor is new floor get out
+
+
+Release 1: Find a Real-Life Algorithm
+My Morning Coffee
+- Turn on coffee maker
+- If coffee grounds is less than coffee required
+	- Measure coffee beans into grinder
+	- Grind coffee for 7 seconds
+	- Put ground coffee in coffee container
+- Measure coffee grounds into coffee filter
+- Place filter in coffee maker
+- If coffee maker water indicator is blinking
+	- fill water from water filter
+- If coffee mug is not under coffee spout
+	- place coffee mug under coffee spout
+- If coffee maker ready light is blinking
+	- push make coffee button
+- Wait until coffee is ready
+- Drink
