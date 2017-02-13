@@ -1,0 +1,14 @@
+Release 0: Equip Your New Robot
+- Identify current floor
+- If new floor is higher than current floor push UP else push DOWN
+- Wait until doors open
+- Enter elevator
+- Search for floor
+	- If going up, start at current floor and search floors higher
+	- If going down, start at current floor and search lower
+	- When new floor located push button
+- Wait until door opens
+	- If current floor is new floor get out
+
+
+Release 1: Find a Real-Life Algorithm
