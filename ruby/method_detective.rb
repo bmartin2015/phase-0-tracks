@@ -44,7 +44,7 @@
 # => 4
 
 
-# I am calling all of them below to see if they are the same as the expected return
+# I am calling all of them below to see if they are the same as the expected return. All of them should return true.
 p "iNvEsTiGaTiOn".swapcase == "InVeStIgAtIoN"
 
 p "zom".insert(1,'o') == "zoom"
