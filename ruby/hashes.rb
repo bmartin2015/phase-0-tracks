@@ -88,6 +88,18 @@ client_info[:favorite_colors] = colors
 # Print out the existing hash information
 print_hash(client_info)
 
+# Ask if there is anything that should be changed
+field = ""
+until field == "none"
+	puts "Enter name of field if you need to change anything or type 'none' if not:"
+	field = gets.chomp
+	if field != "none"
+		puts "What value would you like to be?"
+		change = gets.chomp
+		client_info[field.to_sym] = change
+	end
+end
+print_hash(client_info)
 
 
 
