@@ -15,9 +15,13 @@ train = {
 		},
 	"Dining Car": {
 			beverages: ["perrier", "hot coffee", "orange juice", "liqueur", "cup of tea", "cognac"],
-			meals: ["eggs (including omelet", "soup", "delicate cream cheese", "chicken (without sauces)", "boiled fish", "cereal", "biscuits"]
+			meals: ["eggs (including omelet)", "soup", "delicate cream cheese", "chicken (without sauces)", "boiled fish", "cereal", "biscuits"]
 		},
 	"Coach One": ["Not accessible"]
 }
 
-print train
+puts train[:"Sleeper Car One"][:car_name]
+puts train[:"Sleeper Car One"][:second_class_berths]
+puts train[:"Sleeper Car Two"][:first_class_passengers][1]
+puts train[:"Dining Car"][:meals]
+puts train[:"Coach One"]
