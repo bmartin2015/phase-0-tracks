@@ -113,10 +113,14 @@ def alias_manager()
 		if user_input != "done"
 			alias_name = alias_generator(user_input)
 			puts "#{user_input} is #{alias_name}."
-			agent_names[:user_input] = alias_name
+			agent_names[user_input] = alias_name
 		end
 	end
+	agent_names.each do |agent_alias|
+		puts "#{agent_alias[1]} is actually #{agent_alias[0]}."
+	end
 end
+
 
 
 alias_manager()
