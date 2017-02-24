@@ -29,15 +29,19 @@
 
 
 # I would like to refactor these down, they seem really big
+
+# Return the next vowel for letter
 def next_vowel(letter)
 	vowels = ["a", "e", "i", "o", "u"]
-	uppercase = is_upcase?(letter)
-	letter = letter.downcase
+	uppercase = is_upcase?(letter) # Test if letter is uppercase and remember
+	letter = letter.downcase # make the letter lower case if it is not
+	# If the vowel is u, need to set it to to a
 	if vowels.index(letter) != (vowels.length - 1)
 		next_vowel = vowels[vowels.index(letter)+1]
 	else
 		next_vowel = vowels[0]
 	end
+	# If the letter started upper case, return it as upper case, otherwise it's lower case
 	if uppercase
 		next_vowel.upcase
 	else
@@ -45,6 +49,7 @@ def next_vowel(letter)
 	end
 end
 
+# return the next consonant - pretty much the same as next_vowel()
 def next_consonant(letter)
 	consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
 	uppercase = is_upcase?(letter)
@@ -68,10 +73,12 @@ def is_upcase?(letter)
 	('A'..'Z').include?(letter)
 end
 
+# checks to see if a letter is a vowel
 def is_vowel?(letter)
 	"aeiou".include?(letter.downcase)
 end
 
+# Swap the first and last name, will leave middles names in the middle
 def name_swap(name)
 	# Split that name at spaces
 	split_name = name.split(" ")
@@ -81,14 +88,15 @@ def name_swap(name)
 	return split_name
 end
 
+# This will run the methods needs to create one alias
 def alias_generator(real_name)
-	alias_name = []	
-	swapped_names = name_swap(real_name)
-	swapped_names.each do |name|
+	alias_name = []	# Blank array to hold the final names
+	swapped_names = name_swap(real_name) # Swap the first and last name
+	swapped_names.each do |name| # for each array index, change the letters
 		letters = name.split("")
 		alias_letter = []
 		letters.each do |letter|
-			if is_vowel?(letter)
+			if is_vowel?(letter) # is the letter a vowel?
 				next_letter = next_vowel(letter)
 			else
 				next_letter = next_consonant(letter)
@@ -104,6 +112,7 @@ def alias_generator(real_name)
 	alias_name.join(" ")
 end
 
+# this is the UI for the program
 def alias_manager()
 	agent_names = {}
 	user_input = ""
@@ -121,6 +130,4 @@ def alias_manager()
 	end
 end
 
-
-
-alias_manager()
+alias_manager() # run the program
