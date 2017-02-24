@@ -25,3 +25,34 @@
 # 	TODO:
 # 	how do I handle uppercase vs lower case
 # 	other edge cases? Such as an apostrophe
+
+def next_vowel(letter)
+	vowels = ["a", "e", "i", "o", "u"]
+	if vowels.include?(letter)
+		if vowels.index(letter) != (vowels.length - 1)
+			next_vowel = vowels[vowels.index(letter)+1]
+		else
+			next_vowel = vowels[0]
+		end
+	end
+	next_vowel
+end
+
+def next_consonant(letter)
+	consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+	if consonants.include?(letter)
+		if consonants.index(letter) != (consonants.length - 1)
+			consonants = consonants[consonants.index(letter)+1]
+		else
+			consonants = consonants[0]
+		end
+	end
+	consonants
+end
+
+
+test = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
+test.each do |x|
+	p x
+	p next_consonant(x)
+end
