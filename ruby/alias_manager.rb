@@ -33,12 +33,10 @@ def next_vowel(letter)
 	vowels = ["a", "e", "i", "o", "u"]
 	uppercase = is_upcase?(letter)
 	letter = letter.downcase
-	if vowels.include?(letter)
-		if vowels.index(letter) != (vowels.length - 1)
-			next_vowel = vowels[vowels.index(letter)+1]
-		else
-			next_vowel = vowels[0]
-		end
+	if vowels.index(letter) != (vowels.length - 1)
+		next_vowel = vowels[vowels.index(letter)+1]
+	else
+		next_vowel = vowels[0]
 	end
 	if uppercase
 		next_vowel.upcase
@@ -66,20 +64,48 @@ def next_consonant(letter)
 end
 
 # This is a quick and dirty way to see if a letter is upper case - it will return true or false
-def is_upcase?(letter)
+def is_upcase?(letter) 
 	('A'..'Z').include?(letter)
 end
 
-=begin
-test = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"]
-test.each do |x|
-	p x
-	p next_consonant(x)
+def is_vowel?(letter)
+	"aeiou".include?(letter.downcase)
 end
 
+def name_swap(name)
+	# Split that name at spaces
+	split_name = name.split(" ")
 
-p next_vowel("A")
-p next_vowel("a")
-p next_consonant("B")
-p next_consonant("b")
-=end
+	# If the user has more than two names, it will leave them in the middle
+	split_name[0], split_name[-1] = split_name[-1], split_name[0]
+	return split_name
+end
+
+def alias_generator(real_name)
+	alias_name = []	
+	swapped_names = name_swap(real_name)
+	swapped_names.each do |name|
+		letters = name.split("")
+		alias_letter = []
+		letters.each do |letter|
+			if is_vowel?(letter)
+				next_letter = next_vowel(letter)
+			else
+				next_letter = next_consonant(letter)
+			end
+			if next_letter == nil
+				alias_letter << ""
+			else
+				alias_letter << next_letter
+			end
+		end
+		alias_name << alias_letter.join
+		p alias_name
+	end
+	alias_name.join(" ")
+end
+
+def alias_manager()
+
+
+end
