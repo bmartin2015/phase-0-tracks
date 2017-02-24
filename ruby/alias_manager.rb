@@ -100,12 +100,23 @@ def alias_generator(real_name)
 			end
 		end
 		alias_name << alias_letter.join
-		p alias_name
 	end
 	alias_name.join(" ")
 end
 
 def alias_manager()
-
-
+	agent_names = {}
+	user_input = ""
+	until user_input == "done" || user_input == "Done"
+		puts "Please enter agent name or type 'done' to exit:"
+		user_input = gets.chomp
+		if user_input != "done"
+			alias_name = alias_generator(user_input)
+			puts "#{user_input} is #{alias_name}."
+			agent_names[:user_input] = alias_name
+		end
+	end
 end
+
+
+alias_manager()
