@@ -47,3 +47,45 @@ end
 
 #after .each
 p hollywood_toms
+
+#Release 2
+
+#A method that iterates through the items, deleting any that meet a certain condition 
+letters = [ "A", "B", "C"]
+
+letters.delete_if {|letters| letters == "B"}
+
+p letters
+
+x = { "first" => 1, "second" => 2, "third" => 3}
+x.delete_if {|word, number| number >= 2}
+p x 
+
+#A method that filters a data structure for only items that satisfy a certain condition
+numbers = [ 1, 5, 10, 12]
+numbers.keep_if { |number| number >= 7}
+
+p numbers	
+
+new_x = { "first" => 1, "second" => 2, "third" => 3}
+new_x.keep_if { |word, number| number == 3}
+p new_x
+#A different method than above
+new_numbers = [ 1, 2 ,4, 6, 7]
+new_numbers.select! { |new_number| new_number < 5}
+
+p new_numbers
+
+r = { "a" => "apple", "b" => "banana", "c" => "cantaloupe"}
+r.select! {|letter, word| letter == "b"}
+p r
+#method that will remove items from a data structure until the condition in the block evaluates to false
+more_numbers = [ 5, 10, 15, 20]
+more_new_numbers = more_numbers.drop_while {|number| number < 15}
+
+p more_numbers
+p more_new_numbers
+
+w = { 1 => "one", 2 => "two", 3 => "three"}
+w.reject! {|number, name| number != 3}
+p w 
