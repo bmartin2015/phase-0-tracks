@@ -14,3 +14,8 @@
 # lick
 # sleep
 # bark
+
+# Create Puppy Class
+class Puppy
+
+end
