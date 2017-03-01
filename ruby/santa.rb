@@ -14,6 +14,27 @@ class Santa
 		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
 		@age = 0
 	end
+
+	def celebrate_birthday
+		@age += 1
+	end
+
+	def gets_mad_at(reindeer)
+		index = @reindeer_ranking.index(reindeer)
+		@reindeer_ranking << @reindeer_ranking.delete_at(index)
+	end
+
+	def gender=(new_gender)
+		@gender = new_gender
+	end
+
+	def age
+		@age
+	end
+
+	def ethnicity
+		@ethnicity
+	end
 end
 
 # Test Code - Release 0
