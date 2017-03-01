@@ -1,4 +1,10 @@
 class Santa
+	# getter methods
+	attr_reader :age, :ethnicity
+
+	# setter method
+	attr_accessor :gender
+
 	def speak()
 		puts "Ho, ho, ho! Haaaappy holidays!"
 	end
@@ -15,6 +21,7 @@ class Santa
 		@age = 0
 	end
 
+	# setter methods
 	def celebrate_birthday
 		@age += 1
 	end
@@ -22,18 +29,6 @@ class Santa
 	def gets_mad_at(reindeer)
 		index = @reindeer_ranking.index(reindeer)
 		@reindeer_ranking << @reindeer_ranking.delete_at(index)
-	end
-
-	def gender=(new_gender)
-		@gender = new_gender
-	end
-
-	def age
-		@age
-	end
-
-	def ethnicity
-		@ethnicity
 	end
 end
 
@@ -49,4 +44,13 @@ example_ethnicities = ["afro-latino", "white", "prefer not to say", "inhuman", "
 
 example_genders.length.times do |i|
   santas << Santa.new(example_genders[i], example_ethnicities[i])
+end
+
+santas.each do |santa|
+	puts santa.age
+	santa.celebrate_birthday
+	santa.gets_mad_at("Vixen")
+	santa.gender = "unknown"
+	puts santa.age
+	puts santa.ethnicity
 end
