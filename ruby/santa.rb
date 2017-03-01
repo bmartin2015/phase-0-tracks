@@ -32,6 +32,19 @@ class Santa
 		index = @reindeer_ranking.index(reindeer)
 		@reindeer_ranking << @reindeer_ranking.delete_at(index)
 	end
+
+# Old setter and getter methods
+#	def gender=(gender)
+#		@gender = gender
+#	end
+
+#	def age
+#		@age
+#	end
+
+#	def ethnicity
+#		@ethnicity
+#	end
 end
 
 # Test Code - Release 0
