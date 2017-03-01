@@ -16,6 +16,17 @@ class Santa
 	end
 end
 
-my_santa = Santa.new
-my_santa.speak()
-my_santa.eat_milk_and_cookies("thin mint")
+# Test Code - Release 0
+# my_santa = Santa.new
+# my_santa.speak()
+# my_santa.eat_milk_and_cookies("thin mint")
+
+# Test Code - Release 1
+santas = []
+santas << Santa.new("agender", "black")
+santas << Santa.new("female", "Latino")
+santas << Santa.new("bigender", "white")
+santas << Santa.new("male", "Japanese")
+santas << Santa.new("female", "prefer not to say")
+santas << Santa.new("gender fluid", "Mystical Creature (unicorn)")
+santas << Santa.new("N/A", "N/A")
