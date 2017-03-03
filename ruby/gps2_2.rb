@@ -100,18 +100,21 @@ print_list(shopping_list)
 # Release 4 reflections #
 
 # What did you learn about pseudocode from working on this challenge?
-
+# There are several different ways to write and organize pseudocode and that taking a few minutes to use the psudocode to understand the problem can save time on the actual coding of the problem.
 
 # What are the tradeoffs of using arrays and hashes for this challenge?
-
+# You would either need to use an array of arrays or two arrays to store the item and quantity. In addition, an array would require additional code to to update item quantity (using .index(item)). It seems like a hash is a lot easier to use, since there is no risk of the quantity and items not being synced up.
 
 # What does a method return?
+# It will return what ever the last expression is. Most of our methods will return the hash, but the print_list method will return nil, since the last expression is is a puts. 
 
 
 # What kind of things can you pass into methods as arguments?
-
+# Arrays, strings, hashs, pretty much any data type, code blocks and other methods as well.
 
 # How can you pass information between methods?
+# You can either return the information back to be stored and passed to the next method or use a persistent data structure like an array or hash. 
 
 
 # What concepts were solidified in this challenge, and what concepts are still confusing?
+# I think that pusdocoding became much more organized and clear to me after this challenge. I also feel more clear on when to use a do and when to use {} in code blocks when refactoring code.
