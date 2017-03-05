@@ -45,7 +45,7 @@ class WordGame
 	# output: string
 	def print_word
 		word_string = ""
-		word_guess.each { |letter| word_string = word_string + letter + " " }
+		@word_guess.each { |letter| word_string = word_string + letter + " " }
 		return word_string.rstrip
 	end
 
