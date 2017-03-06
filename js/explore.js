@@ -13,4 +13,8 @@ function reverse(input_string) {
 }
 
 // TEST CODE
-console.log(reverse("Hello"));
+var new_string
+new_string = reverse("Sunflower");
+if(12 == 12) {
+	console.log(new_string);
+}
