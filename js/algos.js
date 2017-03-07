@@ -11,11 +11,22 @@
 	// RETURN the stored index of the array as string
 // Output: string
 function longestString(arr) {
-	var stored_index = 0;
-	for(i = 0; i <= arr.length; i++) {
-		if arr[stored_index].length <= arr[i] {
+	var stored_index = 0; // Set default index
+	for(i = 0; i < arr.length; i++) {
+		if(arr[stored_index].length <= arr[i].length) {
 			stored_index = i;
 		}
-	return arr[stored_index];
 	}
+	return arr[stored_index];
 }
+
+// TEST CODE
+var str = "";
+var arr = ["long phrase","longest phrase","longer phrase"];
+console.log(longestString(arr));
+
+var test = ["123456790","12345","2538","1234578"];
+console.log(longestString(test));
+
+var test2 = ["12345", "123456", "12345678", "111111111111111111111"];
+console.log(longestString(test2))
