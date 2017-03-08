@@ -34,7 +34,7 @@ function longestString(arr) {
 	// RETURN match
 // Output: bool
 function twoObjects(obj1, obj2) {
-	match = false;
+	var match = false;
 	for (var key in obj1) {
 		if (obj1[key] == obj2[key]) {
 			match = true;
@@ -58,10 +58,10 @@ function twoObjects(obj1, obj2) {
 // Output: array
 function randomWords(numberWords) {
 	var wordList = [];
-	alphabet = "abcdefghijklmnopqrstuvwyz"
+	var alphabet = "abcdefghijklmnopqrstuvwyz"
 	for(i = 1; i <= numberWords; i++) {
-		word = "";
-		rand = Math.floor(Math.random() * 10) + 1;
+		var word = "";
+		var rand = Math.floor(Math.random() * 10) + 1;
 		for (x = 0; x < rand; x++ ) {
 			word += alphabet[Math.floor(Math.random() * alphabet.length)];
 		}
@@ -95,5 +95,10 @@ function randomWords(numberWords) {
 
 // console.log(twoObjects(newObj1, newObj2));
 
-test = randomWords(10)
-console.log(test)
+// TEST CODE - RELEASE 2
+for (test = 1; test <= 10; test ++) {
+	var numWords = Math.floor(Math.random() * 10) + 1;
+	var wordList = randomWords(numWords);
+	console.log("Word List " + test + ": " + wordList);
+	console.log("Test " + test + ": " + longestString(wordList));
+}
