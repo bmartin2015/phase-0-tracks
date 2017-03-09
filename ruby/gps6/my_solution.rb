@@ -4,18 +4,20 @@
 # We spent [#] hours on this challenge.
 
 # EXPLANATION OF require_relative
-#
-#
+# It allows the data in the state_data.rb file to be accessible in my_soultion.
+# It connects the 'state_data' file in local directory. Require relative allows you to load the file relative to the "state_data" file. Require relative starts locally and require starts globally. Require can pull in modules, require relative can only access files.
 require_relative 'state_data'
 
 class VirusPredictor
 
+	# Initializes the instance variables
   def initialize(state_of_origin, population_density, population)
     @state = state_of_origin
     @population = population
     @population_density = population_density
   end
 
+  # Calls the predicted_deaths and speed_of_spread methods
   def virus_effects
     predicted_deaths(@population_density, @population, @state)
     speed_of_spread(@population_density, @state)
@@ -23,6 +25,7 @@ class VirusPredictor
 
   private
 
+  # Uses population_density to predict numbers of deaths and puts out the states predicted deaths in outbreak
   def predicted_deaths(population_density, population, state)
     # predicted deaths is solely based on population density
     if @population_density >= 200
@@ -41,6 +44,7 @@ class VirusPredictor
 
   end
 
+  # uses population_density to the speed of spread in a state and puts the output.
   def speed_of_spread(population_density, state) #in months
     # We are still perfecting our formula here. The speed is also affected
     # by additional factors we haven't added into this functionality.
