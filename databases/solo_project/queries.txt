@@ -1,0 +1,37 @@
+Release 2: Execute SQL Queries
+
+Question 1:
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+2|Norbert|true|3
+3|Garn|true|4
+4|Ysera the Dreamer|false|1
+
+Question 2:
+sqlite> UPDATE dragons SET name="Ysera the Awakened" WHERE id = 4;
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+2|Norbert|true|3
+3|Garn|true|4
+4|Ysera the Awakened|false|1
+
+Question 3:
+sqlite> SELECT * FROM dragons, hoards WHERE dragons.hoard_id = hoards.id;
+1|Glaurung|false|2|2|Treasures
+2|Norbert|true|3|3|Bunnies
+3|Garn|true|4|4|Yarn
+4|Ysera the Awakened|false|1|1|Dreams
+
+Question 4:
+sqlite> SELECT dragons.name, hoards.name, dragons.alive FROM dragons JOIN hoards ON dragons.hoard_id = hoards.id;
+Glaurung|Treasures|false
+Norbert|Bunnies|true
+Garn|Yarn|true
+Ysera the Awakened|Dreams|false
+
+Question 5:
+sqlite> DELETE FROM dragons WHERE ID = 2;
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+3|Garn|true|4
+4|Ysera the Awakened|false|1
