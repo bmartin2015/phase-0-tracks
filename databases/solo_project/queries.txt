@@ -35,3 +35,36 @@ sqlite> SELECT * FROM dragons;
 1|Glaurung|false|2
 3|Garn|true|4
 4|Ysera the Awakened|false|1
+
+
+RELEASE 3: Research On Your Own
+
+LEFT JOIN - return all things from the "left" table and anything matching from the "right" table.
+sqlite> SELECT hoards.name, dragons.name FROM hoards LEFT JOIN dragons ON hoards.id = dragons.hoard_id;
+Dreams|Ysera the Awakened
+Treasures|Glaurung
+Bunnies|
+Yarn|Garn
+Cats|
+Broken VHS Tapes|
+
+CROSS JOIN - 
+sqlite> SELECT dragons.name, hoards.name FROM dragons CROSS JOIN hoards;
+Glaurung|Dreams
+Glaurung|Treasures
+Glaurung|Bunnies
+Glaurung|Yarn
+Glaurung|Cats
+Glaurung|Broken VHS Tapes
+Garn|Dreams
+Garn|Treasures
+Garn|Bunnies
+Garn|Yarn
+Garn|Cats
+Garn|Broken VHS Tapes
+Ysera the Awakened|Dreams
+Ysera the Awakened|Treasures
+Ysera the Awakened|Bunnies
+Ysera the Awakened|Yarn
+Ysera the Awakened|Cats
+Ysera the Awakened|Broken VHS Tapes
