@@ -1,0 +1,70 @@
+Release 2: Execute SQL Queries
+
+Question 1:
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+2|Norbert|true|3
+3|Garn|true|4
+4|Ysera the Dreamer|false|1
+
+Question 2:
+sqlite> UPDATE dragons SET name="Ysera the Awakened" WHERE id = 4;
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+2|Norbert|true|3
+3|Garn|true|4
+4|Ysera the Awakened|false|1
+
+Question 3:
+sqlite> SELECT * FROM dragons, hoards WHERE dragons.hoard_id = hoards.id;
+1|Glaurung|false|2|2|Treasures
+2|Norbert|true|3|3|Bunnies
+3|Garn|true|4|4|Yarn
+4|Ysera the Awakened|false|1|1|Dreams
+
+Question 4:
+sqlite> SELECT dragons.name, hoards.name, dragons.alive FROM dragons JOIN hoards ON dragons.hoard_id = hoards.id;
+Glaurung|Treasures|false
+Norbert|Bunnies|true
+Garn|Yarn|true
+Ysera the Awakened|Dreams|false
+
+Question 5:
+sqlite> DELETE FROM dragons WHERE ID = 2;
+sqlite> SELECT * FROM dragons;
+1|Glaurung|false|2
+3|Garn|true|4
+4|Ysera the Awakened|false|1
+
+
+RELEASE 3: Research On Your Own
+
+LEFT JOIN - return all things from the "left" table and anything matching from the "right" table.
+sqlite> SELECT hoards.name, dragons.name FROM hoards LEFT JOIN dragons ON hoards.id = dragons.hoard_id;
+Dreams|Ysera the Awakened
+Treasures|Glaurung
+Bunnies|
+Yarn|Garn
+Cats|
+Broken VHS Tapes|
+
+CROSS JOIN - 
+sqlite> SELECT dragons.name, hoards.name FROM dragons CROSS JOIN hoards;
+Glaurung|Dreams
+Glaurung|Treasures
+Glaurung|Bunnies
+Glaurung|Yarn
+Glaurung|Cats
+Glaurung|Broken VHS Tapes
+Garn|Dreams
+Garn|Treasures
+Garn|Bunnies
+Garn|Yarn
+Garn|Cats
+Garn|Broken VHS Tapes
+Ysera the Awakened|Dreams
+Ysera the Awakened|Treasures
+Ysera the Awakened|Bunnies
+Ysera the Awakened|Yarn
+Ysera the Awakened|Cats
+Ysera the Awakened|Broken VHS Tapes
