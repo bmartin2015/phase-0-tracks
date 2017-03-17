@@ -93,6 +93,7 @@ headtext
 			edit_game(boardgames)
 
 		when "Delete Game"
+			delete_game(boardgames)
 
 
 		end
@@ -171,6 +172,28 @@ headtext
 				#need to write code to update the stuff
 				edit_boardgame(@db, id, game_edit)
 			end
+		end
+		manage_games
+	end
+
+# Allow the user to delete a game
+# input: hash of games
+# steps:
+	# Ask user which game they want to delete
+	# Ask user which thing they want to edit
+	# print confirmation
+	# IF confirmed
+		# delete the game from the database
+	# go back to games menu
+# output: 
+	def delete_game(boardgames)
+		puts "What game do you want to delete?"
+		choice = menu_options(boardgames.keys)
+		puts "I understand you want to delete #{choice}? Is that correct?"
+		id = boardgames[choice][:id]
+		if y_or_n
+			puts "I have deleted that game."
+			delete_boardgame(@db, id)
 		end
 		manage_games
 	end

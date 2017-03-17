@@ -108,6 +108,17 @@ def edit_boardgame(db, id, game)
 	db.execute(sql_str, value_arr)
 end
 
+# delete boardgame in database
+# input: database, id of game to delete
+# steps:
+	# create sql string using id
+	# execute sql string
+# output: array
+def delete_boardgame(db, id)
+	sql_str = "DELETE FROM boardgames WHERE id = #{id}"
+	db.execute(sql_str)
+end
+
 boardgames = get_boardgames(db)
 shelves = get_shelves(db)
 
