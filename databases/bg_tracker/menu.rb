@@ -146,26 +146,30 @@ headtext
 	def edit_game(boardgames)
 		game_edit = {}
 		game_choice = menu_options(boardgames.keys)
-		puts "I understand you wan to edit #{game_choice}. What do you want to edit?"
-		edit_choice = menu_options(["Name", "Publisher", "Shelf", "Never mind"])
+		id = boardgames[game_choice][:id]
+		puts "I understand you want to edit #{game_choice}. What do you want to edit?"
+		edit_choice = menu_options(["Name", "Publisher", "Shelf", "Never mind"]).downcase
 
 		case edit_choice
 
-		when "Name", "Publisher"
+		when "name", "publisher"
 			puts "What do you want to update the #{edit_choice.downcase} to?"
 			game_edit[edit_choice.downcase] = gets.chomp
-			puts "I understand you want to update the #{edit_choice.downcase} of #{game_choice} to #{game_edit['name']}. Is that correct?"
+			puts "I understand you want to update the #{edit_choice.downcase} of #{game_choice} to #{game_edit[edit_choice]}. Is that correct?"
 			if y_or_n
 				# need to write code to update the stuff
+				edit_boardgame(@db, id, game_edit)
 			end
 
-		when "Shelf"
+		when "shelf"
 			shelves = get_shelves(@db)
 			puts "Please select a new shelf (or the same one if you want!)"
 			shelf_choice = menu_options(shelves.keys)
 			puts "I understand you want to update the shelf to #{shelf_choice}. Is that correct?"
+			game_edit['shelf_id'] = shelves[shelf_choice][:id]
 			if y_or_n
 				#need to write code to update the stuff
+				edit_boardgame(@db, id, game_edit)
 			end
 		end
 		manage_games
