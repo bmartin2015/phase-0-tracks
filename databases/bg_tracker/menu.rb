@@ -90,7 +90,7 @@ headtext
 			add_game
 
 		when "Edit Game"
-
+			edit_game(boardgames)
 
 		when "Delete Game"
 
@@ -123,6 +123,50 @@ headtext
 		if y_or_n
 			add_boardgame(@db, new_game)
 			puts "I have added your board game!"
+		end
+		manage_games
+	end
+
+# Allows the user to edit existing games
+# input: hash of games
+# steps:
+	# Ask user which game they want to edit
+	# Ask user which thing they want to edit
+	# CASE Name
+		# GET user input for Name
+	# CASE publisher
+		# GET user input for Publisher
+	# CASE shelf
+		# use menu_options on an array of shelf names to allow user to select a shelf
+	# print confirmation
+	# IF confirmed
+		# add_boardgame to database
+	# go back to games menu
+# output: 
+	def edit_game(boardgames)
+		game_edit = {}
+		game_choice = menu_options(boardgames.keys)
+		puts "I understand you wan to edit #{game_choice}. What do you want to edit?"
+		edit_choice = menu_options(["Name", "Publisher", "Shelf", "Never mind"])
+
+		case edit_choice
+
+		when "Name", "Publisher"
+			puts "What do you want to update the #{edit_choice.downcase} to?"
+			game_edit[edit_choice.downcase] = gets.chomp
+			puts "I understand you want to update the #{edit_choice.downcase} of #{game_choice} to #{game_edit['name']}. Is that correct?"
+			if y_or_n
+				# need to write code to update the stuff
+			end
+
+		when "Shelf"
+			shelves = get_shelves(@db)
+			puts "Please select a new shelf (or the same one if you want!)"
+			shelf_choice = menu_options(shelves.keys)
+			puts "I understand you want to update the shelf to #{shelf_choice}. Is that correct?"
+			if y_or_n
+				#need to write code to update the stuff
+			end
 		end
 		manage_games
 	end
