@@ -87,11 +87,54 @@ headtext
 		case choice
 
 		when "Add Game"
+			add_game
 
 		when "Edit Game"
 
+
 		when "Delete Game"
 
+
+		end
+	end
+
+# Allows the user to add a game.
+# input: none
+# steps:
+	# GET user input for Name
+	# GET user input for Publisher
+	# use menu_options on an array of shelf names to allow user to select a shelf
+	# print confirmation
+	# IF confirmed
+		# add_boardgame to database
+# output: 
+	def add_game
+		new_game = {}
+		puts "I understand you want to add a new board game!"
+		puts "What is the name of your game?"
+		new_game['name'] = gets.chomp
+		puts "Who is the publisher of your new game?"
+		new_game['publisher'] = gets.chomp
+		puts "Please use this list to select a shelf:"
+		shelves = get_shelves(@db)
+		shelf = menu_options(shelves.keys)
+		new_game[:shelf_id] = shelves[shelf][:id]
+		puts "Alright! I am adding #{new_game['name']} by #{new_game['publisher']} to #{shelf} (#{new_game[:shelf_id]}). Is that correct?"
+		if y_or_n
+			add_boardgame(@db, new_game)
+			puts "I have added your board game!"
+		end
+		manage_games
+	end
+
+	#simple code to ask user for yes or no answer
+	def y_or_n
+		puts "Please answer [y]es or [n]:"
+		answer = gets.chomp.downcase
+		if answer == 'y' || answer == 'yes' || answer == '[y]es'
+			true
+		else
+			false
 		end
 	end
 
