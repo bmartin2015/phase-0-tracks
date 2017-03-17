@@ -65,4 +65,52 @@ headtext
 		end
 		output += "-" * (width+header_array.length-1) + "|"
 	end
+
+
+# Manage the games front end
+# input: 
+# steps:
+	# get list of boardgames
+	# print list of boardgames
+	# print menu asking what the user wants to do
+	# CASE add game - call add_game
+	# CASE edit game - call edit game
+	# CASE delete game - call delete game
+	# ELSE exit back to main menu
+# output: 
+	def manage_games
+		boardgames = get_boardgames(@db, "ORDER BY boardgames.name")
+		puts "Board Game Management"
+		puts list_games(boardgames, ["Name", "Publisher", "Shelf"])
+		menu_opts = ["Add Game", "Edit Game", "Delete Game", "Back to Main Menu"]
+		choice = menu_options(menu_opts)
+		case choice
+
+		when "Add Game"
+
+		when "Edit Game"
+
+		when "Delete Game"
+
+		end
+	end
+
+	# DRIVER CODE
+	def start()
+		loop do
+			puts @header_text
+			menu_opts = ["Manage Games", "Manage Shelves", "Exit"]
+			choice = menu_options(menu_opts)
+			
+			case choice
+			when "Manage Games"
+				manage_games
+
+			when "Manage Shelves"
+
+			else
+				break
+			end
+		end
+	end
 end
