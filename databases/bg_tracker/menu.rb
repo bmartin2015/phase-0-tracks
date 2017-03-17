@@ -52,17 +52,17 @@ headtext
 				header_lengths[head] = game_info[head].length if game_info[head].length > length
 			end
 		end
-		width = 15
+		width = header_array.length * 5
 		header_lengths.each {|x,y| width += y}
-		output += "-" * (width+4) + "\n|"
+		output += "-" * (width+header_array.length+1) + "\n|"
 		header_array.each {|head| output += head.center(header_lengths[head]+5) + "|"}
-		output += "\n" + "-" * (width+4) + "\n|"
+		output += "\n" + "-" * (width+header_array.length+1) + "\n|"
 		boardgame_hash.each do |game, game_info|
 			header_lengths.each do |name, length|
 				output += game_info[name].ljust(length+5) + "|"
 			end
 			output+= "\n|"
 		end
-		output += "-" * (width+2) + "|"
+		output += "-" * (width+header_array.length-1) + "|"
 	end
 end
