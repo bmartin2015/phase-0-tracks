@@ -94,8 +94,6 @@ headtext
 
 		when "Delete Game"
 			delete_game(boardgames)
-
-
 		end
 	end
 
@@ -209,6 +207,100 @@ headtext
 		end
 	end
 
+# Manage the shelves front end
+# input: 
+# steps:
+	# get list of shelves
+	# print list of shelves
+	# print menu asking what the user wants to do
+	# CASE add shelf - call add_shelf
+	# CASE edit shelf - call edit_shelf
+	# CASE delete shelf - call delete_shelf
+	# ELSE exit back to main menu
+# output:
+	def manage_shelves
+		shelves = get_shelves(@db)
+		puts "Shelf Management"
+		puts list_games(shelves, ["Name"])
+		shelves
+		menu_opts = ["Add Shelf", "Edit Shelf", "Delete Shelf", "Back to Main Menu"]
+		choice = menu_options(menu_opts)
+		case choice
+
+		when "Add Shelf"
+			add_shelves
+
+		when "Edit Shelf"
+			edit_shelves(shelves)
+
+		when "Delete Shelf"
+			delete_shelves(shelves)
+		end
+	end
+
+# Allows the user to add a shelf.
+# input: none
+# steps:
+	# GET user input for Name
+	# print confirmation
+	# IF confirmed
+		# add_shelf to database
+# output: 
+	def add_shelves
+		puts "I understand you want to add a new shelf."
+		puts "What is the name of your shelf?"
+		new_shelf = gets.chomp
+		puts "Alright! I am adding #{new_shelf} to your list of shelves. Is that correct?"
+		if y_or_n
+			add_shelf(@db, new_shelf)
+			puts "I have added your shelf!"
+		end
+		manage_shelves
+	end
+
+# Allows the user to edit existing shelves
+# input: hash of shelves
+# steps:
+	# Ask user which shelf they want to edit
+	# GET user input for Name
+	# print confirmation
+	# IF confirmed
+		# add_boardgame to database
+	# go back to shelves menu
+# output: 
+	def edit_shelves(shelves)
+		shelf_choice = menu_options(shelves.keys)
+		id = shelves[shelf_choice][:id]
+		puts "I understand you want to edit #{shelf_choice}. What do you want to update the name to?"
+		shelf_name = gets.chomp
+		puts "I understand you want to update the name of #{shelf_choice} to #{shelf_name}. Is that correct?"
+		if y_or_n
+			edit_shelf(@db, id, shelf_name)
+		end
+		manage_shelves
+	end
+
+# Allow the user to delete a shelf
+# input: hash of shelves
+# steps:
+	# Ask user which shelf they want to delete
+	# print confirmation
+	# IF confirmed
+		# delete the shelf from the database
+	# go back to shelves menu
+# output: 
+	def delete_shelves(shelves)
+		puts "What shelf do you want to delete?"
+		choice = menu_options(shelves.keys)
+		puts "I understand you want to delete #{choice}. All boardgames on that shelf will be removed. Is that correct?"
+		id = shelves[choice][:id]
+		if y_or_n
+			puts "I have deleted the shelf."
+			delete_shelf(@db, id)
+		end
+		manage_shelves
+	end
+
 	# DRIVER CODE
 	def start()
 		loop do
@@ -221,7 +313,7 @@ headtext
 				manage_games
 
 			when "Manage Shelves"
-
+				manage_shelves
 			else
 				break
 			end

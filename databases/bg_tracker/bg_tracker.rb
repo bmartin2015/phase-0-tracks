@@ -11,8 +11,8 @@
 
 # Needs:
 # Add boardgames, shelves <- DONE
-# Update boardgames, shelves
-# Delete boardgames, shelves
+# Update boardgames, shelves <- DONE
+# Delete boardgames, shelves <- DONE
 # List games by name <- DONE
 # List shelves by name <- DONE
 # List games by shelf <- DONE
@@ -119,6 +119,42 @@ def delete_boardgame(db, id)
 	db.execute(sql_str)
 end
 
+# add shelf to database
+# input: database, string with name
+# steps:
+	# create sql string using table and string
+	# execute sql string
+# output: array
+def add_shelf(db, name)
+	sql_str = "INSERT INTO shelves (name) VALUES (?)"
+	db.execute(sql_str, name)
+end
+
+# update shelf in database
+# input: database, integer id, string with name, 
+# steps:
+	# create sql string using table and string
+	# execute sql string
+# output: array
+def edit_shelf(db, id, name)
+	sql_str = "UPDATE shelves SET name = ? WHERE id = ?"
+	db.execute(sql_str, name, id)
+end
+
+# delete shelf in database
+# input: database, id of game to delete
+# steps:
+	# create sql string using id
+	# execute sql string
+	# Update all boardgames to remove shelf_id = id
+# output: array
+def delete_shelf(db, id)
+	sql_str = "DELETE FROM shelves WHERE ID = ?"
+	db.execute(sql_str, id)
+	boardgame_string = "UPDATE boardgames SET shelf_id = null WHERE shelf_id = ?"
+	db.execute(boardgame_string, id)
+end
+
 boardgames = get_boardgames(db)
 shelves = get_shelves(db)
 
@@ -133,4 +169,4 @@ menu = Menu.new(db)
 
 #menu.start
 
-menu.edit_game(boardgames)
+menu.manage_shelves
