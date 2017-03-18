@@ -38,7 +38,7 @@ db.results_as_hash = true
 def get_boardgames(db, order_by="")
 	boardgames = {}
 	test = {}
-	sql_str = "SELECT boardgames.id, boardgames.name, boardgames.publisher, boardgames.shelf_id, shelves.name AS shelf_name FROM boardgames, shelves WHERE boardgames.shelf_id = shelves.id #{order_by}"
+	sql_str = "SELECT boardgames.id, boardgames.name, boardgames.publisher, boardgames.shelf_id, shelves.name AS shelf_name FROM boardgames, shelves WHERE boardgames.shelf_id = shelves.id OR boardgames.shelf_id = null #{order_by}"
 	results = db.execute2(sql_str)
 	headers = results.shift
 	results.each do |array|
@@ -64,7 +64,7 @@ end
 # output: hash of hashes
 def get_shelves(db)
 	shelves = {}
-	sql_str = "SELECT * FROM shelves"
+	sql_str = "SELECT * FROM shelves WHERE name != 'Default'"
 	results = db.execute2(sql_str)
 	headers = results.shift
 	results.each do |array|
@@ -149,24 +149,14 @@ end
 	# Update all boardgames to remove shelf_id = id
 # output: array
 def delete_shelf(db, id)
+
+	# need to also remove the shelf_id from boardgames
 	sql_str = "DELETE FROM shelves WHERE ID = ?"
 	db.execute(sql_str, id)
-	boardgame_string = "UPDATE boardgames SET shelf_id = null WHERE shelf_id = ?"
-	db.execute(boardgame_string, id)
 end
 
 boardgames = get_boardgames(db)
 shelves = get_shelves(db)
 
 menu = Menu.new(db)
-# puts menu.list_games(boardgames, ["Name", "Publisher", "Shelf"])
-
-
-# puts menu.list_games(shelves, ["Name"])
-
-# boardgames_2 = get_boardgames(db, "ORDER BY shelves.name")
-# puts menu.list_games(boardgames_2, ["Shelf", "Name", "Publisher"])
-
-#menu.start
-
-menu.manage_shelves
+menu.start

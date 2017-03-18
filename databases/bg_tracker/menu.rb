@@ -292,7 +292,7 @@ headtext
 	def delete_shelves(shelves)
 		puts "What shelf do you want to delete?"
 		choice = menu_options(shelves.keys)
-		puts "I understand you want to delete #{choice}. All boardgames on that shelf will be removed. Is that correct?"
+		puts "I understand you want to delete #{choice}. All board games on that shelf will be removed. Is that correct?"
 		id = shelves[choice][:id]
 		if y_or_n
 			puts "I have deleted the shelf."
