@@ -25,8 +25,8 @@ shelves_sql
 db.execute(create_boardgames_table)
 db.execute(create_shelves_table)
 
-shelves = ["Top Shelf", "Middle Shelf", "Bottom Shelf"]
-games = [["Teen Titans", "DC Comics", 1], ["One Night Vampire", "bezier games", 2], ["Terra Mystica", "zman", 3], ["Random Encounters", "Other People Games", 1], ["Betrayal at House on the Hill", "Wizards of the Coast", 2]]
+shelves = ["Default Shelf", "Top Shelf", "Middle Shelf", "Bottom Shelf"]
+games = [["Teen Titans", "DC Comics", 2], ["One Night Vampire", "bezier games", 2], ["Terra Mystica", "zman", 3], ["Random Encounters", "Other People Games", 4], ["Betrayal at House on the Hill", "Wizards of the Coast", 2]]
 
 games.each do |arr|
 	sql_str = "INSERT INTO boardgames (name, publisher, shelf_id) VALUES (?, ?, ?)"
