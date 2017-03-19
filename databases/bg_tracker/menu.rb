@@ -127,7 +127,7 @@ headtext
 		shelves = get_shelves(@db)
 		shelf = menu_options(shelves.keys)
 		new_game[:shelf_id] = shelves[shelf][:id]
-		puts "Alright! I am adding #{new_game['name']} by #{new_game['publisher']} to #{shelf}.. Is that correct?"
+		puts "Alright! I am adding #{new_game['name']} by #{new_game['publisher']} to #{shelf}. Is that correct?"
 		if y_or_n
 			add_boardgame(@db, new_game)
 			puts "I have added your board game!"
