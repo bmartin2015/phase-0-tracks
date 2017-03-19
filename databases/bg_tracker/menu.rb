@@ -78,13 +78,22 @@ headtext
 	# CASE delete game - call delete game
 	# ELSE exit back to main menu
 # output: 
-	def manage_games
-		boardgames = get_boardgames(@db, "ORDER BY boardgames.name")
+	def manage_games(order_by="ORDER BY boardgames.name")
+		boardgames = get_boardgames(@db, order_by)
 		puts "Board Game Management"
 		puts list_games(boardgames, ["Name", "Publisher", "Shelf"])
-		menu_opts = ["Add Game", "Edit Game", "Delete Game", "Back to Main Menu"]
+		menu_opts = ["Sort Games by Name", "Sort Games by Publisher", "Sort Games by Shelf", "Add Game", "Edit Game", "Delete Game", "Back to Main Menu"]
 		choice = menu_options(menu_opts)
 		case choice
+
+		when "Sort Games by Name"
+			manage_games
+
+		when "Sort Games by Publisher"
+			manage_games("ORDER BY boardgames.publisher")
+
+		when "Sort Games by Shelf"
+			manage_games("ORDER BY shelves.name")
 
 		when "Add Game"
 			add_game
@@ -305,10 +314,13 @@ headtext
 	def start()
 		loop do
 			puts @header_text
-			menu_opts = ["Manage Games", "Manage Shelves", "Exit"]
+			menu_opts = ["Search Games", "Manage Games", "Manage Shelves", "Exit"]
 			choice = menu_options(menu_opts)
 			
 			case choice
+			when "Search Games"
+
+
 			when "Manage Games"
 				manage_games
 
