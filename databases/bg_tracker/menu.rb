@@ -127,7 +127,7 @@ headtext
 		shelves = get_shelves(@db)
 		shelf = menu_options(shelves.keys)
 		new_game[:shelf_id] = shelves[shelf][:id]
-		puts "Alright! I am adding #{new_game['name']} by #{new_game['publisher']} to #{shelf} (#{new_game[:shelf_id]}). Is that correct?"
+		puts "Alright! I am adding #{new_game['name']} by #{new_game['publisher']} to #{shelf}.. Is that correct?"
 		if y_or_n
 			add_boardgame(@db, new_game)
 			puts "I have added your board game!"
@@ -310,6 +310,43 @@ headtext
 		manage_shelves
 	end
 
+# Allow the user to search game by name or publisher
+# input: none
+# steps:
+	# Ask user if user want to search for game or publisher
+	# Ask user for search sring
+	# CALL search_boardgames
+	# IF anything is found
+		# display matching games
+	# ELSE
+		# print nothing found message
+	# return to menu
+# output: 
+	def search_games
+		puts "Would you like to search by name or by publisher?"
+		choice = menu_options(["Name", "Publisher", "Back to Main Menu"])
+		if choice != "Back to Main Menu"
+			puts "Please tell me what to search for:"
+			search_str = gets.chomp
+			case choice
+
+			when "Name"
+				games = search_boardgames(@db, search_str, "boardgames.name")
+
+			when "Publisher"
+				games = search_boardgames(@db, search_str, "boardgames.publisher")
+			end
+			if games.empty? == false
+				puts "I found the following games:"
+				puts list_games(games, ["Name", "Publisher", "Shelf"])
+			else
+				puts "I didn't find any games that match your search."
+			end
+			search_games
+		end
+	end
+
+
 	# DRIVER CODE
 	def start()
 		loop do
@@ -319,7 +356,7 @@ headtext
 			
 			case choice
 			when "Search Games"
-
+				search_games
 
 			when "Manage Games"
 				manage_games
