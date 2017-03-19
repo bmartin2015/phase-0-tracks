@@ -28,12 +28,12 @@ db = SQLite3::Database.new("bg_tracker.db")
 db.results_as_hash = true
 
 # get list of boardgames from database
-# input: database, string order_by (either boardgame or shelf)
+# input: database, string order_by (either board game or shelf)
 # Note: order_by should be in format "ORDER BY boardgame.name" or "ORDER BY shelf.name"
 # steps:
 	# create sql string using table and hash
 	# execute sql string
-	# use results array to create hash of boardgame hashes with the name as the key
+	# use results array to create hash of board game hashes with the name as the key
 # output: hash of hashes
 def get_boardgames(db, order_by="")
 	boardgames = {}
@@ -41,6 +41,7 @@ def get_boardgames(db, order_by="")
 	results = db.execute2(sql_str)
 	headers = results.shift
 	results.each do |array| # Setup the boardgames into a more user friendly hash of hashes with the name of the game as the key
+		boardgames[array['name']] = {
 			id: array['id'],
 			"Name" => array['name'],
 			"Publisher" => array['publisher'],
@@ -73,7 +74,7 @@ def get_shelves(db)
 end
 
 
-# add boardgame to database
+# add board game to database
 # input: database, hash with keys 'name', 'publisher', :shelf_id
 # steps:
 	# create sql string using table and hash
@@ -84,7 +85,7 @@ def add_boardgame(db, game)
 	db.execute(sql_str, game['name'], game['publisher'], game[:shelf_id])
 end
 
-# update boardgame in database
+# update board game in database
 # input: database, hash with keys 'name', 'publisher', :shelf_id
 # steps:
 	# create sql string using table and hash
@@ -104,7 +105,7 @@ def edit_boardgame(db, id, game)
 	db.execute(sql_str, value_arr)
 end
 
-# delete boardgame in database
+# delete board game in database
 # input: database, id of game to delete
 # steps:
 	# create sql string using id
@@ -154,6 +155,32 @@ def delete_shelf(db, id)
 	sql_str = "DELETE FROM shelves WHERE ID = ?"
 	db.execute(sql_str, id)
 end
+
+# search the database for specific games (by name, or publisher)
+# input: database, search string search type, 
+# steps:
+	# create sql string using the search type and string
+	# execute sql string
+	# RETURN the results as hash
+# output: hash of hashes
+def search_boardgames(db, search_string, search_type)
+	boardgames = {}
+	sql_str = "SELECT boardgames.id, boardgames.name, boardgames.publisher, boardgames.shelf_id, shelves.name AS shelf_name FROM boardgames, shelves WHERE boardgames.shelf_id = shelves.id AND #{search_type} LIKE '%' || ? || '%' ORDER BY boardgames.name"
+	results = db.execute2(sql_str, search_string)
+	headers = results.shift
+	results.each do |array| # Setup the boardgames into a more user friendly hash of hashes with the name of the game as the key
+		boardgames[array['name']] = {
+			id: array['id'],
+			"Name" => array['name'],
+			"Publisher" => array['publisher'],
+			shelf_id: array['shelf_id'],
+			"Shelf" => array['shelf_name']
+		}
+	end
+	boardgames # return the hash
+end
+
+
 
 boardgames = get_boardgames(db)
 shelves = get_shelves(db)
