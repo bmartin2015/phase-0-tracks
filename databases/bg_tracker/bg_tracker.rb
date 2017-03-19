@@ -37,22 +37,18 @@ db.results_as_hash = true
 # output: hash of hashes
 def get_boardgames(db, order_by="")
 	boardgames = {}
-	test = {}
-	sql_str = "SELECT boardgames.id, boardgames.name, boardgames.publisher, boardgames.shelf_id, shelves.name AS shelf_name FROM boardgames, shelves WHERE boardgames.shelf_id = shelves.id OR boardgames.shelf_id = null #{order_by}"
+	sql_str = "SELECT boardgames.id, boardgames.name, boardgames.publisher, boardgames.shelf_id, shelves.name AS shelf_name FROM boardgames, shelves WHERE boardgames.shelf_id = shelves.id #{order_by}"
 	results = db.execute2(sql_str)
 	headers = results.shift
-	results.each do |array|
-		boardgames[array['name']] = {
+	results.each do |array| # Setup the boardgames into a more user friendly hash of hashes with the name of the game as the key
 			id: array['id'],
 			"Name" => array['name'],
 			"Publisher" => array['publisher'],
 			shelf_id: array['shelf_id'],
 			"Shelf" => array['shelf_name']
 		}
-#		test[array['name']] = Boardgame.new(array['id'], array['name'], array['publisher'], array['shelf_id'])
 	end
-#	p test
-	boardgames
+	boardgames # return the hash
 end
 
 # get list of shelves from database
@@ -64,16 +60,16 @@ end
 # output: hash of hashes
 def get_shelves(db)
 	shelves = {}
-	sql_str = "SELECT * FROM shelves WHERE name != 'Default'"
+	sql_str = "SELECT * FROM shelves WHERE name != 'Default Shelf'"
 	results = db.execute2(sql_str)
 	headers = results.shift
-	results.each do |array|
+	results.each do |array| # create a hash of hashes with the shelf name as the key
 		shelves[array['name']] = {
 			id: array['id'],
 			"Name" => array['name']
 		}
 	end
-	shelves
+	shelves # return the shelf
 end
 
 
@@ -149,7 +145,11 @@ end
 	# Update all boardgames to remove shelf_id = id
 # output: array
 def delete_shelf(db, id)
-
+	default_shelf = "SELECT id FROM shelves WHERE name = 'Default Shelf'"
+	results = db.execute(default_shelf)
+	default_shelf_id = results[0]['id']
+	boardgame_update = "UPDATE boardgames SET shelf_id = #{default_shelf_id} WHERE shelf_id = ?"
+	db.execute(boardgame_update, id)
 	# need to also remove the shelf_id from boardgames
 	sql_str = "DELETE FROM shelves WHERE ID = ?"
 	db.execute(sql_str, id)
