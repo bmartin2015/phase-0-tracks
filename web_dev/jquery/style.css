@@ -1,0 +1,42 @@
+/* Change background color and set a max width */
+body {
+	background-image: url("dinosaur-14543_640.jpg");
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-color: #b5d7fc;
+	max-width: 960px;
+}
+
+/* Padding and border added to at least one element
+   Margin added to at least one element */
+aside {
+	border: black dotted 2px;
+	padding: 10px;
+	margin: 10px;
+}
+
+/* At least one centered element (a footer message can be nice for this) */
+nav {
+	margin: auto;
+	text-align: center;
+}
+
+
+/* A different font on at least one element
+   A few elements styled using a class */
+.font_change {
+	font-family: helvetica;
+}
+
+.table {
+	border: black dashed 1px;
+}
+
+/* A different color for visited links */
+a:visited {
+	color: darkgrey;
+}
+
+a:hover {
+	font-weight: bold;
+}
