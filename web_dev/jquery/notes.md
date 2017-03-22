@@ -6,6 +6,5 @@
 4. Try to find a hands on JQjuery tutorial that might give some hands on examples and work through them.
 5. Review for any gaps.
 
-## Notes
-
 ## Outcome
+For me, working through real life examples seemed to be the best way to start learning JQuery better. Then using the cheat sheets to get understand more examples beyond what was shown.
