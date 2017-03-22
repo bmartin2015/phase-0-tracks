@@ -71,3 +71,13 @@ get '/add_numbers' do
 	number_3 = number_1 + number_2
 	number_3.to_s
 end
+
+# Release 1: Research On Your Own
+# 1. Is Sinatra the only web app library in Ruby? What are some others?
+# A. No, there are several Ruby web frameworks. There is Ruby on Rails, Merb, and Camping several and Padrino is another based on Sinatra.
+
+# 2. Are SQLite and the sqlite3 gem your only options for using a database with Sinatra? What are some others?
+# A. There are multiple gems to interface with databases. A quick search on Google essentially said that you can use almost any database gem. In addition, you can use DataMapper or ActiveRecord as an ORM to help make Sinatra applications database neutral. 
+
+# 3. What is meant by the term web stack?
+# A. It is the collection of software required to run web development. It might include the OS, server software, database and scripting language. 
