@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Entry Form</title>
+</head>
+<body>
+	<form action="/edit_student/<%= @student[0]['id'] %>" method="post">
+		<input type="text" name="name" value="<%= @student[0]['name'] %>">
+   		<input type="text" name="campus" value="<%= @student[0]['campus'] %>">
+    	<input type="text" name="age" value="<%= @student[0]['age'] %>">
+    	<button type="submit">Save</button>
+	</form>
+</body>
+</html>
